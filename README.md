@@ -1,66 +1,216 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API de Notas en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+Pasos para **clonar** y **probar un proyecto API de Laravel** desde GitHub:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### ✅ **1. Requisitos previos instalados**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Asegúrate de tener instalados:
 
-## Learning Laravel
+* PHP (>= 8.1 recomendado)
+* Composer
+* Git
+* Laravel (opcional, pero útil)
+* MySQL o SQLite (según use el proyecto)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ✅ **2. Clona el repositorio**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Abre una terminal y ejecuta:
 
-## Laravel Sponsors
+```bash
+git clone https://github.com/pamariniesfranciscodelosrios/apinote.git
+cd apinote
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+### ✅ **3. Instala dependencias**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Instala las dependencias PHP con Composer:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+### ✅ **4. Crea el archivo de entorno**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copia el archivo `.env.example` como `.env`:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### ✅ **5. Configura el archivo `.env`**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Edita `.env` con tus datos de base de datos, por ejemplo:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=apinote
+DB_USERNAME=root
+DB_PASSWORD=tu_contraseña
+```
+
+También puedes usar SQLite si es más sencillo:
+
+```bash
+touch database/database.sqlite
+```
+
+Y luego en `.env`:
+
+```
+DB_CONNECTION=sqlite
+DB_DATABASE=/ruta/al/proyecto/database/database.sqlite
+```
+
+---
+
+### ✅ **6. Genera la clave de la app**
+
+```bash
+php artisan key:generate
+```
+
+---
+
+### ✅ **7. Ejecuta las migraciones**
+
+```bash
+php artisan migrate
+```
+
+---
+
+### ✅ **8. Ejecuta el servidor**
+
+```bash
+php artisan serve
+```
+
+Esto levantará el API en `http://127.0.0.1:8000`.
+
+---
+
+### ✅ **9. (Opcional) Prueba con Postman o Insomnia**
+
+Puedes hacer peticiones `GET`, `POST`, `PUT`, `DELETE` según los endpoints que tenga definida la API (normalmente en `routes/api.php`).
+
+---
+
+¿Quieres que revise los endpoints definidos en ese proyecto también?
+
+## Endpoints
+
+### 1. Obtener todas las notas
+
+- **Método:** GET
+- **Ruta:** `/api/note`
+- **Respuesta:**
+
+```json
+{
+  "data": [
+    {"id": 1, "title": "Nota 1", "content": "Contenido de la nota 1"},
+    {"id": 2, "title": "Nota 2", "content": "Contenido de la nota 2"}
+  ]
+}
+```
+
+### 2. Crear una nueva nota
+
+- **Método:** POST
+- **Ruta:** `/api/note`
+- **Parámetros:**
+
+```json
+{
+  "title": "Nueva Nota",
+  "content": "Contenido de la nota"
+}
+```
+
+- **Respuesta:**
+
+```json
+{
+  "success": true,
+  "data": {"id": 3, "title": "Nueva Nota", "content": "Contenido de la nota"}
+}
+```
+
+### 3. Obtener una nota por ID
+
+- **Método:** GET
+- **Ruta:** `/api/note/{id}`
+- **Respuesta:**
+
+```json
+{
+  "data": {"id": 1, "title": "Nota 1", "content": "Contenido de la nota 1"}
+}
+```
+
+### 4. Actualizar una nota
+
+- **Método:** PUT/PATCH
+- **Ruta:** `/api/note/{id}`
+- **Parámetros:**
+
+```json
+{
+  "title": "Nota actualizada",
+  "content": "Nuevo contenido de la nota"
+}
+```
+
+- **Respuesta:**
+
+```json
+{
+  "data": {"id": 1, "title": "Nota actualizada", "content": "Nuevo contenido de la nota"}
+}
+```
+
+### 5. Eliminar una nota
+
+- **Método:** DELETE
+- **Ruta:** `/api/note/{id}`
+- **Respuesta:**
+
+```json
+{
+  "success": true,
+  "data": {"id": 1, "title": "Nota eliminada", "content": "Contenido eliminado"}
+}
+```
+
+## Modelo
+
+La API utiliza el modelo `Note.php`:
+
+```php
+class Note extends Model {
+    use HasFactory;
+    protected $guarded = [];
+    protected $hidden = ['created_at', 'updated_at'];
+}
+```
+
+## Rutas
+
+Las rutas están definidas en `routes/api.php`:
+
+```php
+Route::resource('/note', 'App\Http\Controllers\NoteController');
+```
