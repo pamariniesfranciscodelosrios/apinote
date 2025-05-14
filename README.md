@@ -1,11 +1,10 @@
 # API de Notas en Laravel
 
-
-Pasos para **clonar** y **probar un proyecto API de Laravel** desde GitHub:
+Psos para **clonar** y **probar un proyecto API de Laravel** desde GitHub:
 
 ---
 
-### ✅ **1. Requisitos previos instalados**
+### **1. Requisitos previos instalados**
 
 Asegúrate de tener instalados:
 
@@ -17,7 +16,7 @@ Asegúrate de tener instalados:
 
 ---
 
-### ✅ **2. Clona el repositorio**
+### **2. Clona el repositorio**
 
 Abre una terminal y ejecuta:
 
@@ -28,7 +27,7 @@ cd apinote
 
 ---
 
-### ✅ **3. Instala dependencias**
+### **3. Instala dependencias**
 
 Instala las dependencias PHP con Composer:
 
@@ -38,7 +37,7 @@ composer install
 
 ---
 
-### ✅ **4. Crea el archivo de entorno**
+### **4. Crea el archivo de entorno**
 
 Copia el archivo `.env.example` como `.env`:
 
@@ -46,53 +45,21 @@ Copia el archivo `.env.example` como `.env`:
 cp .env.example .env
 ```
 
----
-
-### ✅ **5. Configura el archivo `.env`**
-
-Edita `.env` con tus datos de base de datos, por ejemplo:
-
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=apinote
-DB_USERNAME=root
-DB_PASSWORD=tu_contraseña
-```
-
-También puedes usar SQLite si es más sencillo:
-
-```bash
-touch database/database.sqlite
-```
-
-Y luego en `.env`:
-
-```
-DB_CONNECTION=sqlite
-DB_DATABASE=/ruta/al/proyecto/database/database.sqlite
-```
-
----
-
-### ✅ **6. Genera la clave de la app**
+### **5. Genera la clave de la app**
 
 ```bash
 php artisan key:generate
 ```
 
----
-
-### ✅ **7. Ejecuta las migraciones**
+### **6. Ejecuta las migraciones**
 
 ```bash
 php artisan migrate
 ```
 
----
+Te pedirá que se cree la base de datos sqslite, confirma con YES
 
-### ✅ **8. Ejecuta el servidor**
+### **7. Ejecuta el servidor**
 
 ```bash
 php artisan serve
@@ -102,15 +69,14 @@ Esto levantará el API en `http://127.0.0.1:8000`.
 
 ---
 
-### ✅ **9. (Opcional) Prueba con Postman o Insomnia**
+### ✅ **9. (Opcional) Prueba con Postman o ThunderClient (extensión VSC)**
 
 Puedes hacer peticiones `GET`, `POST`, `PUT`, `DELETE` según los endpoints que tenga definida la API (normalmente en `routes/api.php`).
 
 ---
 
-¿Quieres que revise los endpoints definidos en ese proyecto también?
 
-## Endpoints
+Endpoints
 
 ### 1. Obtener todas las notas
 
@@ -209,8 +175,26 @@ class Note extends Model {
 
 ## Rutas
 
-Las rutas están definidas en `routes/api.php`:
+Las rutas están definidas en `routes/api.php`
+
+También puedes obternerlas con php artisan route:list
 
 ```php
 Route::resource('/note', 'App\Http\Controllers\NoteController');
 ```
+
+![1747213757969](image/README/1747213757969.png)
+
+
+# Capturas (Thunder Client)
+
+## GET
+
+![1747213783134](image/README/1747213783134.png)
+
+
+
+
+## POST
+
+![1747213842307](image/README/1747213842307.png)
