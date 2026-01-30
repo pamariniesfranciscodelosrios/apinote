@@ -59,6 +59,20 @@ php artisan migrate
 
 Te pedirá que se cree la base de datos sqslite, confirma con YES
 
+
+#### Fíjate que ahora aparece el enrutador api.php 
+
+Será el encargado de gestionar las peticiones HTTP
+
+- Por defecto no viene preconfigurado, hay que instalarlo mediante comando en el caso de crear un nuevo proyecto api
+- EL comando para ello será (ahora no es necesario)
+  ```
+  php artisan install:api
+  ```
+
+![1769753720743](image/README/1769753720743.png)
+
+
 ### **7. Ejecuta el servidor**
 
 ```bash
@@ -74,7 +88,6 @@ Esto levantará el API en `http://127.0.0.1:8000`.
 Puedes hacer peticiones `GET`, `POST`, `PUT`, `DELETE` según los endpoints que tenga definida la API (normalmente en `routes/api.php`).
 
 ---
-
 
 Endpoints
 
@@ -185,15 +198,11 @@ Route::resource('/note', 'App\Http\Controllers\NoteController');
 
 ![1747213757969](image/README/1747213757969.png)
 
-
 # Capturas (Thunder Client)
 
 ## GET
 
 ![1747213783134](image/README/1747213783134.png)
-
-
-
 
 ## POST
 
