@@ -59,8 +59,7 @@ php artisan migrate
 
 Te pedirá que se cree la base de datos sqslite, confirma con YES
 
-
-#### Fíjate que ahora aparece el enrutador api.php 
+#### Fíjate que ahora aparece el enrutador api.php
 
 Será el encargado de gestionar las peticiones HTTP
 
@@ -72,6 +71,14 @@ Será el encargado de gestionar las peticiones HTTP
 
 ![1769753720743](image/README/1769753720743.png)
 
+
+Fíjate también, si muestras todas las rutas del resource que por defecto le añade el prefijo **api/** a cada endpoint a diferencia de las rutas web
+
+```
+php artisan route:list
+```
+
+![1769754264671](image/README/1769754264671.png)
 
 ### **7. Ejecuta el servidor**
 
